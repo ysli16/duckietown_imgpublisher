@@ -1,0 +1,5 @@
+<launch>
+
+   <node pkg="imgpublisher" type="imgpublisher.py" name="imgpublisher" output="screen"/>
+
+</launch>

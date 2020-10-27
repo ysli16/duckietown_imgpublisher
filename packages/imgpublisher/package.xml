@@ -1,0 +1,11 @@
+<package>
+  <name>imgpublisher</name>
+  <version>0.1.0</version>
+  <description>
+  ROS node to extract image from NVIDIA Jetson Nano camera and pubish it to a topic. For AMoD RH3 exercise 21 
+  </description>
+  <maintainer email="yuesli@student.ethz.ch">Yueshan Li</maintainer>
+  <license>None</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

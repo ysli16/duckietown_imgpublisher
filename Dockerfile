@@ -1,7 +1,7 @@
 # parameters
-ARG REPO_NAME="<REPO_NAME_HERE>"
-ARG DESCRIPTION="<DESCRIPTION_HERE>"
-ARG MAINTAINER="<YOUR_FULL_NAME> (<YOUR_EMAIL_ADDRESS>)"
+ARG REPO_NAME="<duckietown_imgpublisher>"
+ARG DESCRIPTION="<ROS node to extract image from NVIDIA Jetson Nano camera and pubish it to a topic. For AMoD RH3 exercise 21.>"
+ARG MAINTAINER="<Yueshan Li> (<yuesli@student.ethz.ch>)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
