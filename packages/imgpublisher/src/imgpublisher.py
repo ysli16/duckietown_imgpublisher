@@ -17,26 +17,29 @@ class ImagePublisher(DTROS):
     def __init__(self, node_name):
         # initialize the DTROS parent class
         super(ImagePublisher, self).__init__(node_name=node_name, node_type=NodeType.GENERIC)
+        #extract image
+        self.cap = cv2.VideoCapture(2)
+        self.bridge = CvBridge()
         # construct publisher
-        self.pub = rospy.Publisher('colordetector/image/compressed', CompressedImage, queue_size=10)
+        self.pub = rospy.Publisher('colordetector/image/compressed', CompressedImage, queue_size=1)
 
-    def run(self,cap,bridge):
+    def run(self):
         # publish message every 1 second
         rate = rospy.Rate(5) # 1Hz
         while not rospy.is_shutdown():
-            ret, frame = cap.read()
-            img_msg=bridge.cv2_to_compressed_imgmsg(frame)
+            ret, frame = self.cap.read()
+            img_msg=self.bridge.cv2_to_compressed_imgmsg(frame)
+            img_msg.header.stamp=rospy.Time.now()
             rospy.loginfo("Get an image...")
             self.pub.publish(img_msg)
+            rospy.loginfo("Published to topic colordetector/image/compressed")
             rate.sleep()
 
 if __name__ == '__main__':
     # create the node
     node = ImagePublisher(node_name='imgpublisher')
-    #extract image
-    cap = cv2.VideoCapture(2)
-    bridge = CvBridge()
+
     # run node
-    node.run(cap=cap,bridge=bridge)
+    node.run()
     # keep spinning
     rospy.spin()
